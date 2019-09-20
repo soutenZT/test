@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件基础2</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="mydiv">
+         <h3>使用事件抛出一个值</h3>   
+         <div :style="{fontSize:postFontSize + 'em'}">
+            <!-- $emit内建方法设置第二个参数通过$event获取 -->
+            <!-- <blog-compoent 
+                @enlarge="postFontSize += $event"
+            ></blog-compoent> -->
+            <!-- 如果这个事件处理函数是一个方法,那么第二个参数会作为 方法的第一个参数传入  -->
+            <blog-compoent 
+                @enlarge="enlargeme"
+            ></blog-compoent>
+            <p>jaja</p>
+        </div>
+        <hr>
+
+        <h3>在组件上使用v-model</h3>   
+        
+
+    </div>  
+    <script>
+        Vue.component("blog-compoent",{
+            //$emit内建方法设置第二个参数
+            template:`
+                <button @click="$emit('enlarge', 0.1)">enlatge text</button> 
+            `
+        })
+        var vm = new Vue(
+            {
+                el:"#mydiv",
+                data:{
+                    postFontSize:2
+                },
+                methods:{
+                    enlargeme:function(amount){
+                        this.postFontSize += amount;
+                    }
+                }
+
+            }
+        )
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="ja">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="myd">
+       <ul>
+           <li v-for='(value,key,index) in items'>
+               {{value}}:{{key}}:{{index}}
+           </li>
+       </ul>
+
+       <table>
+            <tr v-for='(item, index) in items1' :key='index'>
+                <td>{{index}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.name}}</td>
+            </tr>
+       </table>
+
+       <button @click='warn("Form cannot be submitted yet.", $event)'>
+            submitted
+       </button>
+
+       <textarea v-model='message' placeholder='hhaha'>
+       </textarea>
+       <p>{{message}}</p>
+
+       <h2>单个复选框绑定布尔值</h2>
+       <input type="checkbox" id="checkbox" v-model="check">
+       <label for="checkbox">{{check}}</label>
+
+       <h2>多个复选框绑定到一个数组</h2>
+       <input type="checkbox" id="jack" value="jack" v-model="checkedNames">
+       <label for="jack">jack</label>
+       <input type="checkbox" id="tom" value="tom" v-model="checkedNames">
+       <label for="jack">tom</label>
+       <input type="checkbox" id="sala" value="sala" v-model="checkedNames">
+       <label for="sala">sala</label>
+       {{checkedNames}}
+
+       <h2>单选款绑定到一个字符串</h2>
+       <input type="radio" id="man" value="man" v-model="sex">
+       <label for="man">man</label>
+       <input type="radio" id="woman" value="woman" v-model="sex">
+       <label for="woman">woman</label>
+       {{sex}}
+
+       <h2>选择框</h2>
+       <select v-model="selected">
+            <option value="0">select</option>
+            <option value="1">A</option>
+            <option value="2">B</option>
+            <option value="3">C</option>
+       </select>
+       <p>选择的是:{{selected}}</p>
+
+       <h2>选择框多个</h2>
+       <select v-model="selectedList" multiple>
+            <option value="0">select</option>
+            <option value="1">A</option>
+            <option value="2">B</option>
+            <option value="3">C</option>
+       </select>
+       <p>选择的有:{{selectedList}}</p>
+
+       <h2>修饰符</h2>
+       <h3>lazy在change而非input时更新msg</h3>
+       <input v-model.lazy="msg">
+       {{msg}}
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#myd',
+            data:{
+                items:{
+                    id:1,
+                    name:'souten'
+                },
+                items1:[
+                    {age:15, name:'haha'},
+                    {age:34, name:'xixi'}
+                ],
+                message:'1111',
+                check:true,
+                checkedNames:[
+
+                ],
+                sex:"man",
+                selected:0,
+                selectedList:[],
+                msg:"message"
+            },
+            methods:{
+                warn:function(message, event){
+                    if(event){
+                        event.preventDefault();
+                        alert(message);    
+                    } 
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
