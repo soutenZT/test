@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>props</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="mydiv">
+    <!-- props大小写 -->
+        <!-- 组件定义的是驼峰命名的aB，使用的时候a-b -->
+        <!-- <component-a post-title="jaja"></component-a> -->
+    
+    <!-- props静态或动态 -->
+        <!-- 即便 `20` 是静态的，我们仍然需要 `v-bind` 来告诉 Vue -->
+        <!-- 这是一个 JavaScript 表达式而不是一个字符串。-->
+        <!-- <component-a v-bind:likes="20"></component-a> -->
+        <!-- 动态传值 -->
+        <component-a v-bind:likes="likes"></component-a>
+
+        <!-- boolean 默认是false -->
+        <!-- <component-a isPublished></component-a> -->
+
+    </div>
+    <script>
+
+        Vue.component("component-a",{
+            //props:["postTitle"],
+             //给props每个prop指定类型
+            props:{
+                title:String,
+                likes:Number,
+                isPublished:Boolean,
+                commentIds:Array,
+                author:Object,
+                callback:Function,
+                contactsPromise:Promise
+            },
+            template:`
+            <div>
+                <h3>{{likes}}</h3>
+                <h3>{{isPublished}}</h3>
+                <h3>{{commentIds}}</h3>
+            </div>
+            `
+        })
+
+        //根实例
+        new Vue({
+            el:"#mydiv",
+            data:{
+                likes:2
+            }
+        })
+    </script>
+</body>
+</html>

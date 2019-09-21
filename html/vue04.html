@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件注册</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="mydiv">
+
+        
+    </div>
+    <script>
+        //全局注册  注册的组件相互之间可以调用
+        Vue.component("component-a",{
+        })
+
+        //局部注册  
+        var compoentB = {},
+        var compoentC = {}
+        //局部注册的组件互相之间不能直接调用，如果要调用，可以这样写
+        var compoentD = {
+            components:{
+                "component-b":compoentB
+            }
+        }
+
+        //根实例
+        new Vue({
+            el:"#mydiv",
+            components:{
+                "component-b":compoentB,
+                "component-c":compoentC
+            }
+        })
+    </script>
+</body>
+</html>
