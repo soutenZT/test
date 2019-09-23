@@ -18,20 +18,58 @@
         <!-- 这是一个 JavaScript 表达式而不是一个字符串。-->
         <!-- <component-a v-bind:likes="20"></component-a> -->
         <!-- 动态传值 -->
-        <component-a v-bind:likes="likes"></component-a>
+        <!-- <component-a v-bind:likes="likes"></component-a> -->
 
         <!-- boolean 默认是false -->
         <!-- <component-a isPublished></component-a> -->
 
+    　　<h2>propsのバリデーション</h2>
+        <!-- <compoent-a :propC="20"></compoent-a> -->
+
+        <h2>既存の属性への置換とマージ</h2>
+        <p>ほとんどの属性においては、コンポーネント側の値が、コンポーネントに受け渡された値へと置換されます。
+            たとえば、 type="text" を渡すと、 type="date" は置き換えられ、
+            そして壊れてしまうでしょう！幸運なことに、
+             class および style 属性は少しスマートに作られていますので、両方の値がマージされ、
+             最終的な値は form-control date-picker-theme-dark となります。</p>
     </div>
     <script>
-
+        function Person(firstName, lastName){
+            this.firstName = firstName;
+            this.lastName = lastName;
+        }
         Vue.component("component-a",{
             //props:["postTitle"],
              //给props每个prop指定类型
             props:{
-                title:String,
-                likes:Number,
+                //文字列型を必要で要求する
+                title:{
+                    tyepe:String,
+                    required:false
+                },
+                //複数の型の許容
+                likes:[String,Number],
+                //デフォルト値つきの数値型
+                propC:{
+                    type:Number,
+                    default:100
+                },
+                //デフォルト値付きのオブジェクト型
+                propD:{
+                    type:Object,
+                    default:function(){
+                        return {message:"hello"}
+                    }
+                },
+                //カスタマイズしたバリデーション関数
+                ProF:{
+                    validator:function(value){
+                        //プロパティの値は、必ずいずれかの文字列でなかればならない
+                        return ['success','warning','danger'].indexOf(value) !== -1
+                    }
+                },
+                //更に　type はカスタムコンストラクタ関数でもあり、instanceof によるアサーションを行います
+                author:Person, //new person によって作成されたものと検証できました。
                 isPublished:Boolean,
                 commentIds:Array,
                 author:Object,
@@ -40,9 +78,7 @@
             },
             template:`
             <div>
-                <h3>{{likes}}</h3>
-                <h3>{{isPublished}}</h3>
-                <h3>{{commentIds}}</h3>
+                <h3>{{propC}}</h3>
             </div>
             `
         })
@@ -51,8 +87,8 @@
         new Vue({
             el:"#mydiv",
             data:{
-                likes:2
-            }
+                likes:2,
+            },
         })
     </script>
 </body>

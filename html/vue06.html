@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义事件</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="mydiv">
+        <h2>事件名</h2>
+        <p>始终使用 kebab-case 的事件名</p>
+        <hr>
+
+        <p>一个组件的v-model默认会利用名为value的prop和名为input的事件</p>
+        <!-- <base-checkbox v-model="value"></base-checkbox> -->
+
+        <p>像单选框、复选框等类型的输入控件可能会将 value 特性用于不同的目的。model 选项可以用来避免这样的冲突：</p>
+        <base-checkbox v-model="lovingVue"></base-checkbox>
+        <hr>
+
+        <h2>将原生事件绑定到组件</h2>
+        <p>根元素可能是一个类似于label的标签，没有诸如onfocus之类的原生事件</p>
+        <p>vue提供了一个$listener属性，包含了作用在这个组件上的所有的监听器</p>
+        <base-checkbox v-model="lovingVue"></base-checkbox>
+    </div>
+
+    <script>
+        // Vue.component(
+        //     "base-checkbox",
+        //     {
+        //         props:["value"],
+        //         template:`
+        //         <div>
+        //             <input :value = "value" @input = "$emit('input', $event.target.value)">
+        //             {{value}}
+        //         </div>
+        //         `
+        //     }
+        // )
+        Vue.component(
+            "base-checkbox",
+            {
+                model:{
+                    prop:'checked',
+                    event:'change'
+                },
+                props:{
+                    checked:Boolean
+                },
+                computed:{
+                    inputListeners:function(){
+                        var vm = this
+
+                        //Object.assign 
+                        return Object.assign({},this.$listeners,{
+
+                            input:function(event){
+                                vm.$emit('change', $event.target.checked)
+                            }
+                        })
+                    }
+                },
+                template:`
+                <label>
+                    <input id= "my" type = "checkbox" :checked = "checked" v-on = "inputListeners">
+                    <label for="my">{{checked}}</label>
+                </label>
+                `
+            }
+        )
+        new Vue({
+            el:"#mydiv",
+            data:{
+                lovingVue:true
+            }
+        })
+    
+    </script>
+</body>
+</html>
