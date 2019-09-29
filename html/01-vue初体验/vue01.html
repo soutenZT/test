@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <!-- 展示列表 -->
+    <div id="app">
+        <ul>
+            <li v-for = "item in movies">{{item}}</li>
+        </ul>
+    </div>
+    <script>
+    const app = new Vue({
+           el:"#app",
+           data: {
+               movies: ["bbb","cccc","dddd","eee"],
+           },
+           method:{},
+           beforeCreated:function () {
+
+           },
+           created:function () {
+               console.log("aaa");
+           },
+           mounted:function () {
+               console.log("bbb");
+           }
+
+       });
+    </script>
+</body>
+</html>
