@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    
+    <style>
+        .active{
+            background-color: red;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="mydiv">
+        <!-- v-bind 绑定属性 -->
+
+        <!-- 1 使用它动态绑定class 
+            class的对象语法 {类1:boolean, 类2：boolean}
+        -->
+        
+        <p :class="{active: isActive, line: isLine}">我们都是种花家</p>
+
+        <p :class="getClass">我们都是种花家</p>
+
+        <!-- 有几行文字，点击哪一行，哪一行标识红色  案例 -->
+        <ul>
+            <li v-for="(item,index) in array" @click="index1 = index" :class="{active: index == index1}">{{item}}</li>
+        </ul>
+    </div>
+    <script>
+        let vm = new Vue(
+            {
+                el:"#mydiv",
+                data:{
+                    message:"aaaa",
+                    isActive: true,
+                    isLine:true,
+                    array:["111","222","333","44"],
+                    index1:0
+                },
+                methods: {
+                    getClass: function(){
+                        return {active: this.index == index, line: isLine};
+                    },
+                    removeClass:function(){
+                        this.index = index;
+                    }
+                }
+            }
+        )
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    
+</head>
+<body>
+    <div id="mydiv">
+        <!-- v-once 指令内容只会渲染一次，之后不会发生改变 -->
+        <p v-once>{{message}}</p>
+
+        <!-- v-html 将表达式渲染成html元素 -->
+        <p v-html="url"></p>
+
+        <!-- v-text 给标签赋值内容，会覆盖标签中间设置的内容-->
+        <p v-text="message">111</p>
+
+        <!-- v-pre 将标签中的内容不经渲染的显示出来-->
+        <p v-pre>{{message}}</p>
+
+        <!-- v-cloak  防止闪屏现象-->
+        <p v-cloak>{{message}}</p>
+    </div>
+    <script>
+        setTimeout(() => {
+            let vm = new Vue(
+                {
+                    el:"#mydiv",
+                    data:{
+                        message:"haha",
+                        url:"<a href='www.baidu.com'>百度一下</a>"
+                    }
+                }
+            )
+        }, 1000);
+    </script>
+</body>
+</html>
