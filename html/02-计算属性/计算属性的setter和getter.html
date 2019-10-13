@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    
+    <style>
+        .active{
+            background-color: red;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="mydiv">
+      <h3>{{fullName}}</h3>
+    </div>
+    <script>
+        let vm = new Vue(
+            {
+                el:"#mydiv",
+                data:{
+                   firstName: "kobe",
+                   lastName: "bryant"
+                },
+                methods: {
+                  
+                },
+                computed:{
+                  //一般的计算属性只有get，设置成只读
+                  // fullName: {
+                  //   set: function (newValue) {
+
+                  //   },
+                  //   get: function () {
+                  //     return this.firstName + this.lastName; 
+                  //   }
+                  // }
+
+                  //简化
+                  fullName: function () {
+                      return this.firstName + this.lastName; 
+                  }
+                }
+            }
+        )
+    </script>
+</body>
+</html>

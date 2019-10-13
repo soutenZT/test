@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="mydiv1">
+       <button>button1</button>
+       <button>button2</button>
+       <button>button3</button>
+       <button>button4</button>
+    </div>
+    <script>
+        //javascript  es6之前中除了函数，都没有块级作用域
+
+        //1.var声明的标识符并没有块级作用域(if/for)的概念，只有函数作用域，例如下面会打印两次why 
+        // {
+        //     var name = "why";
+        //     console.log(name);
+            
+        // }
+        // console.log(name);
+        
+        
+        //2.没有块级作用域引发的问题
+        // 循环给4个按钮添加点击事件，点击页面上的按钮时 每次打印的都是  this is 4 button
+
+         var btns  = document.getElementsByTagName("button");
+
+         for (var i = 0; i < btns.length; i++) {
+            
+            btns[i].addEventListener('click', function () {
+                console.log("this is " + i + "button");
+            }, false);
+         }
+
+         //3.ES6之后引进了块级作用域，使用let声明的变量有了块级作用域
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+    
+    <style>
+        .active{
+            background-color: red;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="mydiv">
+        <!-- 调用方法的时候要小括号 -->
+       <h2>{{getFullName()}}</h2>
+
+       <!-- 调用计算属性的时候不要小括号 -->
+       <h2>{{fullName}}</h2>
+
+
+       <!-- 计算属性和方法的区别在于是否有缓存 -->
+       <!-- 使用计算属性  只要依赖的属性没有发生变化 只会调用一次-->
+        <h2>{{totalPrice1}}</h2>
+        <h2>{{totalPrice1}}</h2>
+        <h2>{{totalPrice1}}</h2>
+        <h2>{{totalPrice1}}</h2>
+
+      <!-- 使用方法  使用多少次调用多少次-->
+      <h2>{{totalPrice()}}</h2>
+      <h2>{{totalPrice()}}</h2>
+      <h2>{{totalPrice()}}</h2>
+      <h2>{{totalPrice()}}</h2>
+
+    </div>
+    <script>
+        let vm = new Vue(
+            {
+                el:"#mydiv",
+                data:{
+                   firstName: "kobe",
+                   lastName: "bryant",
+                   books:[
+                       {name:"111",price:12},
+                       {name:"222",price:13},
+                       {name:"333",price:14}
+                   ]
+                },
+                methods: {
+                  getFullName () {
+                    return this.firstName + this.lastName;
+                  },
+                  totalPrice () {
+                    console.log("methods");
+                    let total = 0;
+                    this.books.forEach(book => {
+                        total += book["price"];
+                    });
+                    return total;
+                  }
+                },
+                computed:{
+                  fullName: function () {
+                    return this.firstName + " " + this.lastName;
+                  },
+                  totalPrice1: function () {
+                    console.log("computed");
+                    let total = 0;
+                    this.books.forEach(book => {
+                        total += book["price"];
+                    });
+                    return total;
+                  }
+                }
+            }
+        )
+    </script>
+</body>
+</html>
