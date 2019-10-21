@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="mydiv1">
+       {{counter}}
+       <!-- 在使用v-on监听事件的时候， 
+        如果方法没有参数，调用的时候，省去() 
+        如果方法有参数，但是我们还是省去() 去调用, 那么vue默认会将浏览器生成的event对象作为参数传入方法
+       -->
+
+       <!-- 调用的方法同时需要普通参数 和event对象  使用$event 将event对象传入方法-->
+       <button @click = "increment">+</button>
+       <button @click = "decrement">-</button>
+
+       <button @click = "getEvent">event</button>
+
+       <button @click = "getMore(2, $event)">event</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#mydiv1",
+            data:{
+                counter : 1,
+            },
+            methods: {
+                increment () {
+                  this.counter++;
+                },
+                decrement () {
+                  this.counter--;
+                },
+                getEvent (event) {
+                  console.log(event);
+                },
+                getMore (counter, event) {
+                    console.log(counter, event);
+                }
+            },
+        })
+        
+    </script>
+</body>
+</html>
