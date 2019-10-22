@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="mydiv1" @click = "divClick">
+        <!-- stop 阻止冒泡 -->
+       <button @click.stop = "btnClick">event</button>
+
+       <!-- prevent 阻止默认事件的触发 -->
+       <a href="www.baidu.com" @click.prevent.stop = "btnClick">百度</a>
+
+       <!-- 监听键盘 -->
+       <input type="text" @keyup.enter  = "btnClick">
+       <input type="text" @keyup.13 = "btnClick">
+
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#mydiv1",
+            data:{
+                counter : 1,
+            },
+            methods: {
+                btnClick () {
+                  console.log("btnClick");
+                },
+                divClick () {
+                  console.log("divClick");
+                }
+            },
+        })
+        
+    </script>
+</body>
+</html>
