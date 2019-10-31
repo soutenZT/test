@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app" >
+        <!-- 改变vue中的数据， vue会去重新渲染dom, 这样页面上显示的值也同时发生变化，这就是响应式 -->
+        <ul->
+            <li v-for="item in array">{{item}}</li>
+        </ul->
+        <button @click="chan">按钮</button>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data:{
+                array : ["a","b","c"],
+                object : {
+                    name:"tobe",
+                    age: 22,
+                    country : "China"
+                }
+            },
+            methods: {
+                chan(){
+                //数组中的响应式方法
+                    //this.array.push(22);          //在数组的最后面添加元素
+                    // this.array.pop();               //删除最后一个元素
+                    // this.array.shift();             //删除第一个元素
+                    // this.array.unshift(11, 22);    //在数组最前面添加元素
+                    
+                    // this.array.splice(1,2);         //从数组第一个位置之后，删除两个元素
+                    // this.array.splice(1,2,"f","g");  //从数组第一个位置之后，删除两个元素，并添加两个元素
+                    // this.array.splice(1,0,"f","g");  //从数组第一个位置之后，删除0个元素，并添加两个元素    
+
+                    // this.array.sort();
+                    // this.array.reverse();
+
+                    //通过vue内部的方法
+                    //Vue.set(要修改的对象, 索引值, 修改后的值);
+                    //Vue.set(this.array, 0, "cc");
+
+                //将一个数组赋予到另一个数组,也是响应式的
+                var array_new = [1,2,3,4];
+                this.array = array_new;
+
+                //通过数组下标去改变值   非响应式的
+                 this.array[0] = 1111;
+
+                    
+                }
+            },
+        })
+        
+    </script>
+</body>
+</html>
