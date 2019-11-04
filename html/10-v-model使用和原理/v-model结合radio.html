@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="myapp">
+
+        <!-- 前端来说当使用单选框的时候，几个元素的name属性必须保持一致 -->
+        <!-- 不过在vue中  使用v-model的话就可以去掉name -->
+        <!-- v-model绑定的是一个字符 -->
+        <label for="male">
+            <input type="radio" id="male" value="男" v-model="gender">男
+        </label>
+        <label for="female">
+            <input type="radio" id="female" value="女" v-model="gender">女
+        </label>
+
+    </div>
+    <script>
+        const vm = new Vue(
+            {
+                el:"#myapp",
+                data:{
+                    gender:""
+                },
+            }
+        )
+        
+    </script>
+</body>
+</html>

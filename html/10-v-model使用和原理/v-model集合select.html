@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="myapp">
+        <!-- 选一个 -->
+        <select name="" v-model="friut">
+            <option value="pg">pg</option>
+            <option value="xj">xj</option>
+            <option value="jjz">jjz</option>
+        </select>
+        <p>is {{friut}}</p>
+        <hr>
+
+        <!-- 选多个 -->
+        <select name="" v-model="friuts" multiple>
+                <option value="pg">pg</option>
+                <option value="xj">xj</option>
+                <option value="jjz">jjz</option>
+        </select>
+        <p>is {{friuts}}</p>
+    </div>
+    <script>
+        const vm = new Vue(
+            {
+                el:"#myapp",
+                data:{
+                   friut:"",
+                   friuts:[]
+                },
+            }
+        )
+        
+    </script>
+</body>
+</html>

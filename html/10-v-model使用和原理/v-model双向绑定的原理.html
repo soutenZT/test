@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="myapp">
+        <!-- v-model是双向绑定的 -->
+        <input type="text" v-model="message" >
+
+        <!-- 使用下面这种方式也能形成双向绑定的效果 -->
+        <!-- input事件和keyup事件挺像的 -->
+        <input type="text" :value="message" @input="valueChange">   
+        <input type="text" :vlaue="message" @input="message = $event.target.value">
+
+    </div>
+    <script>
+        const vm = new Vue(
+            {
+                el:"#myapp",
+                data:{
+                    message:"hahaha"
+                },
+                methods:{
+                    valueChange(event) {
+                        this.message = event.target.value;
+                    }
+                }
+            }
+        )
+        
+    </script>
+</body>
+</html>
