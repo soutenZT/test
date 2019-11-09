@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <con2></con2>
+
+        <!-- 这里不能使用con1组件  因为它并没有在Vue实例中注册 -->
+        <!-- <con1></con1>   -->
+    </div>
+
+    <script>
+       // 1.创建第一个组件构造器
+       const con1 = Vue.extend({
+           template:`
+           <div>
+            <h2>title1</h2>
+            <p>content1</p>
+           </div>
+           `
+       });
+
+       const con2 = Vue.extend({
+           template:`
+           <div>
+            <h2>title2</h2>
+            <p>content2</p>
+            <con1></con1>
+           </div>
+           `,
+           // 在组件b中注册另一个组件a , 这样在b组件就可以使用a组件，关系上来说b是父组件，a是子组件
+           components: {
+               con1:con1
+           }
+       });
+
+       //Vue实例也是组件，它是最大的组件，root组件
+       //个人认为  它的template应该是 <div id=app></div>
+       const app = new Vue({
+           el: "#app",
+           components: {
+                con2:con2
+           }
+       });
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+       <!-- 注意这里使用v-bind，要不然movies就是个字符串 -->
+        <com2 :cmovies="movies"></com2> 
+    </div>
+    
+    <template id="cn">
+        <div>
+            {{cmovies}}
+        </div>
+    </template>
+    <script>
+        //开发中通常是父组件去发送请求到服务，然后接收到数据。但是父组件一般需要将数据传到子组件，或者说是子组件会将数据给到父组件。
+        //这就涉及到了父子组件的通信
+
+
+        //1.父传子 props
+        const cpn = {
+            template: "#cn",
+            props: ['cmovies'],  //没有类型的变量
+            // props: {
+            //     // //1.类型限制
+            //     // cmovies: Array,
+
+            //     // //2.
+            //     // cmovies:{
+            //     //     type: Array,
+            //     //     default:[1,2,3],
+            //     //     required: true
+            //     // }
+            // },
+            data () {
+                return {};
+            },
+            methods: {
+
+            }
+        }
+        
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                movies:[11,22,33] 
+            },
+            components: {
+                com2: cpn
+            }
+        })
+        
+    </script>
+</body>
+</html>
