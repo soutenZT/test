@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+
+<body>
+
+    <!-- 父组件如何获取子组件实例 -->
+    <div id="app">
+        <cpn></cpn>
+        <cpn ref="bbb"></cpn>
+        <cpn></cpn>
+        <button @click="btnClick">获取子组件实例</button>
+    </div>
+    <template id="tm">
+        <div>
+            子组件实例
+        </div>
+    </template>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            methods: {
+                //1.this.$children  获取该组件的子组件数组
+                //2.当有多个子组件的时候，可以使用$refs获取指定的一个子组件
+                btnClick() {
+                    console.log(this.$children[0].name);
+                    console.log(this.$children[0].childClick);
+
+
+                    console.log(this.$refs.bbb.name);
+
+                }
+            },
+            components: {
+                cpn: {
+                    template: "#tm",
+                    data() {
+                        return {
+                            name: "child",
+                        }
+                    },
+                    methods: {
+                        childClick() {
+                            console.log("ahahahahah");
+                        }
+                    },
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
