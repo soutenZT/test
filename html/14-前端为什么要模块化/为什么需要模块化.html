@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script></script>
+</head>
+
+<!--前端为什么需要模块化呢 -->
+<!-- 当项目中有多个js文件的时候，
+    按照es5的标准，变量只有在函数中才有作用域
+    所以很可能两个文件中有名字相同的，这样会在后续程序有影响
+    a.js    b.js  c.js(用a.js中的变量，但是没想到被b.js变了)
+-->
+
+<!-- 为了解决这个问题，我们可以使用js的函数自调用，将所有都封装成一个匿名函数
+    也就是闭包，
+    a1.js   b1.js
+
+    这解决了变量作用域的问题，然而这样就会产生新的问题,
+    就是c.js无法在访问到a1.js中的变量或方法了
+    只能重新在c.js中定义变量或方法
+    这样整个代码的复用性就会变得很差
+-->
+
+<!-- 为了解决这个问题，我们要将代码模块化，将a1, b1模块化，
+        就像是封装了两个独立的对象
+        所以既解决了变量作用域问题，又解决了代码复用性问题
+
+        a11.js  b11.js
+-->
+
+
+<!-- 以上就是要模块化的原因，所以之后的es6， commonJs规范就出现了模块化的思想 -->
+
+<body>
+    <!-- <script src="./a.js"></script>
+    <script src="./b.js"></script>
+    <script src="./c.js"></script> -->
+
+    <script src="./a11.js"></script>
+    <script src="./c.js"></script>
+</body>
+
+</html>
