@@ -1,0 +1,21 @@
+webpack 是一个打包模块化工具
+
+webpack  首先要安装node.js ， node.js自带软件管理工具npm
+
+1.安装node.js
+2.node -v 查看node.js的版本
+3.npm install webpack@3.6.0 -g  全局安装webpack
+4.webpack --version 查看webpack的版本
+
+
+
+这里使用了例子
+dist文件夹(用于发布)
+  bundle.js
+
+src文件夹(用于开发)
+    下面放几个存在依赖关系的js模块
+
+使用webpack命令将src文件夹下面，所有的js都打包成一个bundle.js 放到dist文件夹下面
+    webpack .\src\main.js .\dist\bundle.js
+然后去index.html正常引用bundle.js 就可以了
