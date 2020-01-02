@@ -10,3 +10,7 @@ console.log(name);
 
 //将css文件也当作模块
 require("./css/nomal.css");
+
+//将less文件当作模块
+require("./css/special.less");
+document.writeln("<h2>hello world</h2>");
