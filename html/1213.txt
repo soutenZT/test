@@ -1,3 +1,5 @@
 https://%{HTTP_HOST}/123 [L,R=301]
 https://%{HTTP_HOST}/123 [L,R=301]
 https://%{HTTP_HOST}/123 [L,R=301]
+https://%{HTTP_HOST}/123 [L,R=301]
+https://%{HTTP_HOST}/123 [L,R=301]
