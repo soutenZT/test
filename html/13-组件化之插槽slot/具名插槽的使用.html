@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+
+<!-- 如果一个组合中有多个插槽，而我们实例化的时候，想放到具体某一个里面，这个时候具名插槽就派上用场   -->
+
+<body>
+    <div id="APP">
+        <!-- 1.不指定使用，它会找到没有名字的插槽 -->
+        <!-- <cpn><button>按钮</button></cpn> -->
+
+        <!-- 2.指定使用 -->
+        <cpn><span slot="middle">span标签</span></cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <slot name="left"><p>默认值</p></slot>
+            <slot name="middle"><p>默认值</p></slot>
+            <slot name="right"><p>默认值</p></slot>
+            <slot></slot>
+        </div>
+    </template>
+    <script>
+        let vm = new Vue({
+            el: "#APP",
+            data: {
+
+            },
+            components: {
+                cpn: {
+                    template: "#cpn",
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

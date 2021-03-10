@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="mydiv1" >
+        <!-- 遍历数组 -->
+        <ul->
+            <li v-for="item in array">{{item}}</li>
+        </ul->
+            <!-- 带索引 -->
+        <ul->
+            <li v-for="(item1, index) in array">{{item1}}{{index}}</li>
+        </ul->
+
+        <!-- 遍历对象 -->
+        <ul->
+            <li v-for="value in object">{{value}}</li>
+        </ul>
+
+        <ul->
+            <li v-for="(value, key, index) in object">{{index}}{{key}}：{{value}}</li>
+        </ul->
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#mydiv1",
+            data:{
+                array : ["a","b","c"],
+                object : {
+                    name:"tobe",
+                    age: 22,
+                    country : "China"
+                }
+            },
+            methods: {
+                
+            },
+        })
+        
+    </script>
+</body>
+</html>

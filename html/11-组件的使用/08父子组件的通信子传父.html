@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <!-- 子组件传递数据给父组件，通过发送自定义事件， 父组件监听该事件 -->
+    <!-- 注意$emit传递事件,以及监听该事件的时候， 不能使用驼峰命名法 -->
+
+
+    <!-- 父组件模板 -->
+    <div id="app">
+        <!-- 监听子组件发送的自定义事件， 默认接收参数 -->
+        <com2 @item-click='comClick'></com2>
+    </div>
+    
+    <!-- 子组件模板 -->
+    <template id="cn">
+        <div>
+            <button v-for='item in categories' @click='btnclick(item, item.name)'>{{item.name}}</button>
+        </div>
+    </template>
+
+    <script>
+        const cpn = {
+            template: "#cn",
+            props: {
+            },
+            data () {
+                return {
+                    categories: [
+                        {id: 'aa', name: 'apple'},
+                        {id: 'bb', name: 'banana'},
+                        {id: 'cc', name: 'count'}
+                    ]
+                };
+            },
+            methods: {
+                btnclick (item, name) {
+                    //发送自定义事件,和参数
+                    this.$emit('item-click', item, name);
+                }
+            }
+        }
+        
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                movies:[11,22,33] 
+            },
+            components: {
+                com2: cpn
+            },
+            methods: {
+                comClick (item ,name) {
+                    console.log(item, name);
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>

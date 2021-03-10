@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-aon></my-aon>
+
+    </div>
+
+    <script>
+        //1. 创建组件构造器对象
+        const aon = Vue.extend({
+            //这里注意template里面只会展示一个根元素的内容，所以当有多个标签时，可以把他们包在一个div中
+            template:`
+            <div>
+                <h2>我是标题</h2>
+                <p>我是内容</p>
+            </div>
+            `
+        })
+        //2.注册组件
+        Vue.component('my-aon',aon);
+         
+        const app = new Vue({
+             el:"#app",
+             data:{
+
+             }
+         })
+
+         //3.使用   这些组件只能在vue实例中使用
+    </script>
+</body>
+</html>

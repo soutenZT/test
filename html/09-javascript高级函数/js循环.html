@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="anc()">11111</button>
+
+    <script>
+        function anc() {
+            let array = ["a", "b", "c", "d", "e"];
+            let list = [{
+                id: 3,
+                name: "souten"
+            }, {
+                id: 4,
+                name: "msi"
+            }]
+
+            //1.普通循环
+            // for (let i = 0; i < array.length; i++) {
+            //     console.log(array[i]);
+            // }
+            // for (let i = 0; i < list.length; i++) {
+            //     console.log(list[i].id + list[i].name);
+            // }
+
+            //2.循环
+            // for (let i of array) {  i是元素
+            //     console.log(i);
+            // }
+            // for (let item of list) { item是元素
+            //     console.log(item.id + item.name);
+            // }
+
+            //3.循环
+            // for (let i in array) { i是索引
+            //     console.log(i);
+            // }
+            // for (let item in list) { item是索引
+            //     console.log(list[item].id);
+            // }
+        }
+    </script>
+</body>
+
+</html

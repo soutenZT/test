@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="mydiv1" @click = "divClick">
+        <!-- 下面两组div，当不停切换的时候，这一组输入的内容会传递到下一组 -->
+        <!-- 因为v-if指令，渲染的时候，只会创建显示的元素到dom中 -->
+        <!-- vue在渲染dom的时候，为了提升性能，它会复用类似的元素 -->
+
+        <!-- 如果想解决这个问题，有两种方案 -->
+        <!-- 1.用v-show指令代替v-if指令   v-show是所有元素都会创建，只是通过display去设置显示与否 -->
+        <!-- 2.给元素一个唯一标识符key -->
+        <div class="form-control" v-if="flag" key="name">
+            <label for="name">用户名</label>
+            <input type="text" id="name"  placeholder="输入用户名">
+        </div>
+        <div class="form-control" v-if="!flag" key="email">
+            <label for="email">邮箱</label>
+            <input type="text" id="email"  placeholder="输入邮箱">
+        </div>
+
+        <button @click="swift"> 切换 </button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#mydiv1",
+            data:{
+                flag : false,
+            },
+            methods: {
+                btnClick() {
+                  console.log("btnClick");
+                },
+                divClick() {
+                  console.log("divClick");
+                },
+                swift() {
+                  this.flag = !this.flag
+                }
+            },
+        })
+        
+    </script>
+</body>
+</html>

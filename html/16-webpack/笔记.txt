@@ -1,0 +1,8 @@
+webpack 是一个打包模块化工具
+
+webpack  首先要安装node.js ， node.js自带软件管理工具npm
+
+1.安装node.js
+2.node -v 查看node.js的版本
+3.npm install webpack@3.6.0 -g  全局安装webpack
+4.webpack --version 查看webpack的版本

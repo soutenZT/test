@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <com1></com1>
+        <com2></com2>
+    </div>
+    <!-- 第一种方法 -->
+    <script type="text/x-template" id="cpn1">
+        <div>
+            <h2>title1</h2>
+            <p>content1</p>
+        </div>
+    </script>
+
+    <!-- 第二种方法 -->
+    <template id="cpn2">
+        <div>
+            <h2>title2</h2>
+            <p>content2</p>
+        </div>
+    </template>
+    <script>
+        //在script中写的模板是html标签，这样看起来有点乱，view和controller没有分离开来。这里有两种方式将它们隔离开
+
+        //1.将模板中的html抽离出来，写到一个type="text/x-template"的script脚本中，然后通过id绑定起来
+
+        //2.使用template标签
+
+        Vue.component("com1", {
+            template: "#cpn1"
+        });
+
+        const vm = new Vue({
+            el: "#app",
+            components: {
+                com2: {
+                    template: "#cpn2"
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="myapp">
+        <!-- 1.单个单选框   绑定的是布尔值-->
+        <label for="bask"></label>
+        <input type="checkbox" id="agree" v-model="isagree">同意协议
+        {{isagree}}
+
+        <hr>
+
+        <!-- 2.多选框 绑定的是数组-->
+        <label for="a">
+                <input type="checkbox" id="a" v-model="hobby" value="篮球">篮球
+        </label>
+        <label for="b">
+                <input type="checkbox" id="b" v-model="hobby" value="足球">足球
+        </label>
+        <label for="c">
+                <input type="checkbox" id="c" v-model="hobby" value="羽毛球">羽毛球
+        </label>
+        <label for="d">
+                <input type="checkbox" id="d" v-model="hobby" value="兵乓球">兵乓球
+        </label>
+
+        <p> 选中的爱好是</p>
+        <ul>
+            <li v-for="item in hobby">{{item}}</li>
+        </ul>
+    </div>
+    <script>
+        const vm = new Vue(
+            {
+                el:"#myapp",
+                data:{
+                    isagree:"",
+                    hobby: []
+                },
+            }
+        )
+        
+    </script>
+</body>
+</html>

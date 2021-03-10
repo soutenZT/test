@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+
+<body>
+
+    <!-- 子组件如何获取父组件实例 -->
+    <div id="app">
+        <cpn></cpn>
+    </div>
+    <template id="tm">
+        <div>
+            子组件实例
+            <button @click="childClick">click son</button>
+            <cnchild></cnchild>
+
+        </div>
+    </template>
+    <template id="tmchild">
+            <div>
+                孙组件实例
+                <button @click="grandCick">click grand son</button>
+            </div>
+        </template>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                name: "grandFather"
+            },
+            methods: {
+                btnClick() {
+
+                }
+            },
+            components: {
+                cpn: {
+                    template: "#tm",
+                    data() {
+                        return {
+                            name: "father",
+                        }
+                    },
+                    methods: {
+                        childClick() {
+                            //获取父组件
+                            console.log(this.$parent.name);
+                        }
+                    },
+                    components: {
+                        cnchild: {
+                            template: "#tmchild",
+                            data() {
+                                return {
+                                    name: "grandson",
+                                };
+                            },
+                            methods: {
+                                grandCick() {
+                                    //获取根组件
+                                    console.log(this.$root.name);
+                                    //获取父组件
+                                    console.log(this.$parent.name);
+
+                                }
+                            },
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

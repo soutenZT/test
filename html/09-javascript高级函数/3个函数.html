@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        nums = [1, 2, 3, 4, 5, 6, 7];
+
+        //1.filters(回调函数)  过滤函数
+        // n 是nums中的元素，循环调用nums数组，当 return true 就将n放到一个新的数组，否则就跳过
+        let new_nums = nums.filter(function(n) {
+            return n > 3;
+        })
+        let new_numsS = nums.filter(n => n > 3); //改写上面的程序  使用箭头函数
+        console.log(new_nums);
+        console.log(new_numsS);
+
+
+        //2.map(回调函数)    循环数组，改变每个元素
+        let new_nums2 = nums.map(function(n) {
+            return n * 2;
+        })
+        console.log(new_nums2);
+
+
+        //3.reduce(回调函数，初始值)  汇总函数
+        //0 代表preValue初始值是0
+        //preValue 的值 是上次循环return的值
+
+        //第一次循环  preValue = 0    n = 1
+        //第二次循环  preValue = 0+1  n = 2
+        //第三次循环  preValue = 1+2  n = 3
+        let total = nums.reduce(function(preValue, n) {
+            return preValue + n;
+        }, 0);
+        console.log(total);
+    </script>
+</body>
+
+</html>

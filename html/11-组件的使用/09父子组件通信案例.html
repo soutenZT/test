@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <!-- 案例说明 : 改变子组件中的input框的值， 它的props改变， 同时父组件中的属性也改变 -->
+    <!-- 一般来说props只由父组件去改变 ， 但是我这里尝试子组件去改变自己的props也不会报错，可能是版本问题-->
+    <!-- 如果报错了， 正确的做法是，子组件中去data定义属性××，初始值是props的值，改变的是××，而不是props -->
+
+    
+    <!-- 父组件模板 -->
+    <div id="app">
+        <h2>data: {{num1}}</h2>
+        <h2>data: {{num2}}</h2>
+        <comn1 :number1='num1' :number2='num2' @num1-change='n1change' @num2-change='n2change'>
+
+
+        </comn1>
+    </div>
+
+    <template id='comp'>
+        <div>
+            <h2>props: {{number1}}</h2>
+            <input type="text" v-model='number1' @input='numberChange1'>
+            <h2>props: {{number2}}</h2>
+            <input type="text" v-model='number2' @input='numberChange2'>
+        </div>
+    </template>
+    <script>
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                num1: 1,
+                num2: 2
+            },
+            components: {
+                comn1: {
+                    template: '#comp',
+                    props: {
+                        number1: Number,
+                        number2: Number,
+                    },
+                    methods: {
+                        numberChange1 () {
+                            this.$emit('num1-change', this.number1)
+                        },
+                        numberChange2 () {
+                            this.$emit('num2-change', this.number2)
+                        }
+                    }
+                }
+            },
+            methods: {
+                n1change (number1) {
+                    this.num1 = number1;
+                },
+                n2change (number2) {
+                    this.num2 = number2;
+                }
+            }
+
+
+        })
+    
+    </script>
+</body>
+</html>

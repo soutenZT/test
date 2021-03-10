@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+
+<!-- vue中有一个编译作用域的概念： 父模板中的东西只会在父模板中编译，子模板的只能在子模板中编译 -->
+<!-- 通俗来讲，就是组件模板中所用的变量都来自己data的数据-->
+
+<!-- 前面学过，父模板可以通过$emit获取子组件的数据，但是那是要触发事件 -->
+<!-- 在不触发事件的情况下，如何在使用slot的时候，在父模板中使用子模板中的数据？ -->
+<!-- 这里就要用到作用域插槽的概念：父组件替换插槽的标签，但是内容由子组件提供 -->
+
+<body>
+    <div id="app">
+        <cpn></cpn>
+        <cpn>
+            <!-- 通过slot-scope获取slot对象 -->
+            <template slot-scope="slot">
+                <span>{{slot.data.join("-")}}</span>
+            </template>
+        </cpn>
+        <cpn></cpn>
+    </div>
+
+    <template id="cpn">
+        <slot :data="planguage">
+            <ul>
+                <li v-for="item in planguage">
+                    {{item}}
+                </li>
+            </ul>
+        </slot>
+    </template>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            components: {
+                cpn: {
+                    template: "#cpn",
+                    data() {
+                        return {
+                            planguage: ["java", "php", "c"]
+                        }
+                    },
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

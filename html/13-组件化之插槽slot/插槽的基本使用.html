@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+
+<!-- slot的作用， 就像一个抽象方法，每个对象去实例化的时候，都可以自定义，然后替换到slot里面 -->
+
+<body>
+    <div id="APP">
+        <cpn><button>按钮</button></cpn>
+        <cpn><span>span标签</span></cpn>
+        <cpn>
+            <h2>h2标签</h2>
+            <p>p标签</p>
+        </cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <h2>我是组件实例</h2>
+            <slot><p>默认值</p></slot>
+        </div>
+    </template>
+    <script>
+        let vm = new Vue({
+            el: "#APP",
+            data: {
+
+            },
+            components: {
+                cpn: {
+                    template: "#cpn",
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

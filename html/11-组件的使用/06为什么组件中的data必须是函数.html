@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <com2></com2>
+        <com2></com2>
+    </div>
+    <script>
+        //1.组件不能访问Vue实例data中的数据，它有属于自己的data，它的数据都放在自己的data中，它也只能访问自己的data
+        //2.组件的data和Vue中的data不一样，它的data是函数类型,返回的是对象，vue实例中的data是对象
+       
+        //3.如果它data不是函数，那么相同的几个组件对象之间的数据会相互影响，相反如果是函数，那么每一个组件都是操作不同的对象（data每次返回的是新的对象）
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                content:"1111" 
+            },
+            components: {
+                com2: {
+                    template: `
+                    <div>
+                        <h2>{{title}}</h2>
+                        <p>tititi</p>
+                    </div>
+                    `,
+                    data () {
+                        return {
+                            title:"1111"
+                        }
+                    }
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>
